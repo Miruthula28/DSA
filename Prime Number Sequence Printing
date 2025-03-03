@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of primes: ");
+        int n = sc.nextInt();
+        sc.close();
+
+        int[] nums = new int[n];
+        int i = 2, count = 0, index = 0;
+
+        while (count < n) {
+            if (isPrime(i)) {
+                nums[index] = i;
+                count++;
+                index++;
+            }
+            i++;
+        }
+
+        int len = nums.length;
+
+        // Print first half
+        for (int z = 0; z < len / 2; z++) {
+            System.out.print(nums[z] + " ");
+        }
+
+        // Print second half in reverse order
+        for (int x = len - 1; x >= len / 2; x--) {
+            System.out.print(nums[x] + " ");
+        }
+    }
+
+    public static boolean isPrime(int n) {
+        if (n < 2) return false;
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+}
