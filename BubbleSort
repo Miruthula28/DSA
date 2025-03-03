@@ -1,0 +1,22 @@
+public class Main{
+    static void bubble(int n, int[] nums){
+       int temp;
+       for(int i=0;i<n-1;i++){
+           for(int j=0;j<n-i-1;j++){
+               if(nums[j]>nums[j+1]){
+                   temp = nums[j+i];
+                   nums[j+1]=nums[j];
+                   nums[j]=temp;
+                   
+               }
+           }
+       }
+    }
+    public static void main(String[] args){
+        int[] nums = {2,13,4,33,7,54,25,8,9,17};
+        bubble(10,nums);
+        for(int a:nums){
+            System.out.print(a+" --->");
+        }
+    }
+}
