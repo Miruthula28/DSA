@@ -1,0 +1,106 @@
+class LinkedList {
+    Node head;
+
+    class Node {
+        int data;
+        Node next; // Self-referential pointer
+
+        Node(int val) {
+            data = val;
+            next = null;
+        }
+    }
+
+    LinkedList() {
+        head = null;
+    }
+
+    void insert(int val) {
+        Node newnode = new Node(val);
+        if (head == null) {
+            head = newnode;
+            return;
+        } else {
+            newnode.next = head;
+            head = newnode;
+        }
+    }
+
+    void display() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ---> ");
+            temp = temp.next;
+        }
+        System.out.println("NULL");
+    }
+
+    void insertpos(int p, int val) {
+        Node newnode = new Node(val); 
+
+        if (p == 0) {
+            insert(val);
+            return;
+        }
+
+        Node temp = head;
+        for (int i = 1; i < p; i++) { 
+            if (temp == null) {
+                System.out.println("Insertion not possible");
+                return;
+            }
+            temp = temp.next;
+        }
+
+        if (temp == null) { 
+            System.out.println("Insertion not possible");
+            return;
+        }
+
+        newnode.next = temp.next;
+        temp.next = newnode;
+    }
+    
+    void delete(int pos) {
+    if (head == null) {
+        System.out.println("List is empty. Deletion not possible.");
+        return;
+    }
+
+    if (pos == 0) {
+        head = head.next;
+        return;
+    }
+
+    Node temp = head;
+    for (int i = 1; i < pos; i++) {
+        if (temp.next == null) {
+            System.out.println("Deletion not possible: position out of range.");
+            return;
+        }
+        temp = temp.next;
+    }
+
+    if (temp.next == null) {
+        System.out.println("Deletion not possible: position out of range.");
+        return;
+    }
+
+    temp.next = temp.next.next; 
+  }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        LinkedList l = new LinkedList();
+        l.insert(100);
+        l.insert(200);
+        l.insert(300);
+        l.insert(400);
+        l.display();
+        l.insertpos(3, 450);
+        l.display(); 
+        l.delete(4); 
+        l.display();
+    }
+}
